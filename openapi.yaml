@@ -8,6 +8,8 @@ servers:
 paths:
   /companyInfoSummery:
     post:
+      tags:
+        - Company Data
       summary: Get summary information for a company by symbol
       requestBody:
         required: true
@@ -187,6 +189,8 @@ paths:
                         type: string
   /tradeSummary:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get trade summary for all companies
       responses:
         '200':
@@ -258,6 +262,8 @@ paths:
                           type: integer
   /todaySharePrice:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get today's share price for all companies
       responses:
         '200':
@@ -299,6 +305,8 @@ paths:
                       type: integer
   /topGainers:
     post:
+      tags:
+        - Market Performance
       summary: Get today's top gainers
       responses:
         '200':
@@ -311,6 +319,8 @@ paths:
                   $ref: '#/components/schemas/StockTrade'
   /topLooses:
     post:
+      tags:
+        - Market Performance
       summary: Get today's top losing stocks
       responses:
         '200':
@@ -323,6 +333,8 @@ paths:
                   $ref: '#/components/schemas/StockTrade'
   /mostActiveTrades:
     post:
+      tags:
+        - Market Performance
       summary: Get most active trades
       responses:
         '200':
@@ -354,6 +366,8 @@ paths:
                       format: float
   /getNewListingsRelatedNoticesAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get new listings related notices and announcements
       responses:
         '200':
@@ -369,6 +383,8 @@ paths:
                       $ref: '#/components/schemas/NewListingAnnouncement'
   /getBuyInBoardAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get buy-in board announcements
       responses:
         '200':
@@ -384,6 +400,8 @@ paths:
                       $ref: '#/components/schemas/Announcement'
   /approvedAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get approved announcements
       responses:
         '200':
@@ -399,6 +417,8 @@ paths:
                       $ref: '#/components/schemas/ApprovedAnnouncement'
   /getFinancialAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get financial announcements
       responses:
         '200':
@@ -423,6 +443,8 @@ paths:
                               type: string
   /circularAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get circular announcements
       responses:
         '200':
@@ -438,6 +460,8 @@ paths:
                       $ref: "#/components/schemas/AnnouncementFileBase"
   /directiveAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get directive announcements
       responses:
         '200':
@@ -453,6 +477,8 @@ paths:
                       $ref: '#/components/schemas/AnnouncementFileBase'
   /getNonComplianceAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get non-compliance announcements
       responses:
         '200':
@@ -474,6 +500,8 @@ paths:
                               type: string
   /marketStatus:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get current market status
       responses:
         '200':
@@ -487,6 +515,8 @@ paths:
                     type: string
   /marketSummery:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get market summary
       responses:
         '200':
@@ -507,6 +537,8 @@ paths:
                     type: integer
   /aspiData:
     post:
+      tags:
+        - Indices
       summary: Get ASPI index data
       responses:
         '200':
@@ -517,6 +549,8 @@ paths:
                 $ref: '#/components/schemas/IndexData'
   /snpData:
     post:
+      tags:
+        - Indices
       summary: Get S&P SL20 index data
       responses:
         '200':
@@ -527,6 +561,8 @@ paths:
                 $ref: '#/components/schemas/IndexData'
   /chartData:
     post:
+      tags:
+        - Company Data
       summary: Get chart data for a symbol
       requestBody:
         required: true
@@ -564,6 +600,8 @@ paths:
           description: Bad request (invalid or missing parameters)
   /allSectors:
     post:
+      tags:
+        - Sectors
       summary: Get all sector data
       responses:
         '200':
@@ -576,6 +614,8 @@ paths:
                   $ref: '#/components/schemas/SectorData'
   /detailedTrades:
     post:
+      tags:
+        - Detailed Trading Feed
       summary: Get detailed trades
       responses:
         '200':
@@ -591,6 +631,8 @@ paths:
                       $ref: '#/components/schemas/StockTrade'
   /dailyMarketSummery:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get daily market summaries
       responses:
         '200':
@@ -605,6 +647,8 @@ paths:
                     $ref: '#/components/schemas/DailyMarketSummaryItem'
   /companyChartDataByStock:
     post:
+      tags:
+        - Company Data
       summary: Get historical chart data for a stock by internal stock ID
       description: >
         Returns time-series chart data for the given stock.  
