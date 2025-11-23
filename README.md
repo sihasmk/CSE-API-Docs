@@ -7,10 +7,16 @@ Unofficial, OpenAPI-based documentation for the CSE’s public API endpoints.
 This repository provides a **single source of truth** for the Colombo Stock Exchange (CSE) public API — defined using the **OpenAPI 3.0.3 specification**.  
 All endpoint definitions, parameters, examples, and response structures are maintained inside the `openapi.yaml` file.
 
+**Note**: *The actual CSE API is not OpenAPI-based; this documentation is a reverse-engineered specification created to provide a structured reference.*
+
+If you're new to OpenAPI, you can learn more from the official documentation:  
+🔗 **https://swagger.io/specification/**
+
 A simple `index.html` is included, which loads the YAML file through **Swagger UI** for an interactive, user-friendly view of the API documentation.
 
 This project is inspired by earlier community work, especially  
 [@GH0STH4CKER](https://github.com/GH0STH4CKER) whose initial API exploration helped kickstart this version.
+
 
 ---
 
