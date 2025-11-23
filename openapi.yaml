@@ -8,185 +8,26 @@ servers:
 paths:
   /companyInfoSummery:
     post:
+      tags:
+        - Company Data
       summary: Get summary information for a company by symbol
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                symbol:
-                  type: string
-                  example: AEL.N0000
-              required: [symbol]
+              $ref: '#/components/schemas/CompanyInfoSummeryRequest'
       responses:
         '200':
           description: Successful response with company summary
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqSymbolBetaInfo:
-                    type: object
-                    properties:
-                      securityId:
-                        type: integer
-                      triASIBetaValue:
-                        type: number
-                        format: float
-                      betaValueSPSL:
-                        type: number
-                        format: float
-                      triASIBetaPeriod:
-                        type: string
-                      quarter:
-                        type: integer
-                  reqTagsLogo:
-                    nullable: true
-                    type: object
-                  reqLogo:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      path:
-                        type: string
-                  reqSymbolInfo:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      symbol:
-                        type: string
-                      name:
-                        type: string
-                      issueDate:
-                        type: string
-                      quantityIssued:
-                        type: integer
-                      parValue:
-                        type: number
-                        format: float
-                      issuedPrice:
-                        nullable: true
-                        type: number
-                        format: float
-                      lastTradedPrice:
-                        type: number
-                        format: float
-                      wtdHiPrice:
-                        type: number
-                        format: float
-                      mtdHiPrice:
-                        type: number
-                        format: float
-                      ytdHiPrice:
-                        type: number
-                        format: float
-                      p12HiPrice:
-                        type: number
-                        format: float
-                      allHiPrice:
-                        type: number
-                        format: float
-                      allLowPrice:
-                        type: number
-                        format: float
-                      wtdLowPrice:
-                        type: number
-                        format: float
-                      mtdLowPrice:
-                        type: number
-                        format: float
-                      ytdLowPrice:
-                        type: number
-                        format: float
-                      p12LowPrice:
-                        type: number
-                        format: float
-                      tdyShareVolume:
-                        type: integer
-                      wdyShareVolume:
-                        type: integer
-                      mtdShareVolume:
-                        type: integer
-                      ytdShareVolume:
-                        type: integer
-                      p12ShareVolume:
-                        type: integer
-                      tdyTradeVolume:
-                        type: integer
-                      wtdTradeVolume:
-                        nullable: true
-                        type: integer
-                      mtdTradeVolume:
-                        nullable: true
-                        type: integer
-                      ytdTradeVolume:
-                        nullable: true
-                        type: integer
-                      p12TradeVolume:
-                        nullable: true
-                        type: integer
-                      tdyTurnover:
-                        type: number
-                        format: float
-                      wtdTurnover:
-                        type: number
-                        format: float
-                      mtdTurnover:
-                        type: number
-                        format: float
-                      ytdTurnover:
-                        type: number
-                        format: float
-                      p12Turnover:
-                        nullable: true
-                        type: number
-                        format: float
-                      previousClose:
-                        type: number
-                        format: float
-                      foreignHoldings:
-                        nullable: true
-                        type: number
-                        format: float
-                      foreignPercentage:
-                        nullable: true
-                        type: number
-                        format: float
-                      instrumentsDate:
-                        nullable: true
-                        type: string
-                      hiTrade:
-                        type: number
-                        format: float
-                      lowTrade:
-                        type: number
-                        format: float
-                      closingPrice:
-                        type: number
-                        format: float
-                      marketCap:
-                        type: number
-                        format: float
-                      marketCapPercentage:
-                        type: number
-                        format: float
-                      change:
-                        type: number
-                        format: float
-                      changePercentage:
-                        type: number
-                        format: float
-                      symbolIndexShareVolume:
-                        type: integer
-                      isin:
-                        type: string
+                $ref: '#/components/schemas/CompanyInfoSummeryResponse'
   /tradeSummary:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get trade summary for all companies
       responses:
         '200':
@@ -194,70 +35,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqTradeSummery:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        symbol:
-                          type: string
-                        quantity:
-                          type: integer
-                        percentageChange:
-                          type: number
-                          format: float
-                        change:
-                          type: number
-                          format: float
-                        price:
-                          type: number
-                          format: float
-                        previousClose:
-                          type: number
-                          format: float
-                        high:
-                          type: number
-                          format: float
-                        low:
-                          type: number
-                          format: float
-                        lastTradedTime:
-                          type: integer
-                        issueDate:
-                          type: string
-                        turnover:
-                          type: number
-                          format: float
-                        sharevolume:
-                          type: integer
-                        tradevolume:
-                          type: integer
-                        marketCap:
-                          type: number
-                          format: float
-                        marketCapPercentage:
-                          type: number
-                          format: float
-                        open:
-                          type: number
-                          format: float
-                        closingPrice:
-                          type: number
-                          format: float
-                        crossingVolume:
-                          type: integer
-                        crossingTradeVol:
-                          type: integer
-                        status:
-                          type: integer
+                $ref: '#/components/schemas/TradeSummaryResponse'
   /todaySharePrice:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get today's share price for all companies
       responses:
         '200':
@@ -265,40 +47,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    symbol:
-                      type: string
-                    open:
-                      type: number
-                      format: float
-                    high:
-                      type: number
-                      format: float
-                    low:
-                      type: number
-                      format: float
-                    lastTradedPrice:
-                      type: number
-                      format: float
-                    change:
-                      type: number
-                      format: float
-                    changePercentage:
-                      type: number
-                      format: float
-                    crossingVolume:
-                      type: integer
-                    tradesTime:
-                      type: integer
-                    quantity:
-                      type: integer
+                $ref: '#/components/schemas/TodaySharePriceResponse'
   /topGainers:
     post:
+      tags:
+        - Market Performance
       summary: Get today's top gainers
       responses:
         '200':
@@ -306,11 +59,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StockTrade'
+                $ref: '#/components/schemas/StockTradeArray'
   /topLooses:
     post:
+      tags:
+        - Market Performance
       summary: Get today's top losing stocks
       responses:
         '200':
@@ -318,11 +71,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StockTrade'
+                $ref: '#/components/schemas/StockTradeArray'             
   /mostActiveTrades:
     post:
+      tags:
+        - Market Performance
       summary: Get most active trades
       responses:
         '200':
@@ -330,30 +83,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    securityId:
-                      type: integer
-                    symbol:
-                      type: string
-                    tradeVolume:
-                      type: number
-                      format: float
-                    shareVolume:
-                      type: number
-                      format: float
-                    turnover:
-                      type: number
-                      format: float
-                    percentageShareVolume:
-                      type: number
-                      format: float
+                $ref: '#/components/schemas/MostActiveTradesResponse'
   /getNewListingsRelatedNoticesAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get new listings related notices and announcements
       responses:
         '200':
@@ -361,14 +95,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  newListingRelatedAnnouncements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/NewListingAnnouncement'
+                $ref: '#/components/schemas/GetNewListingsRelatedNoticesAnnouncementsResponse'
   /getBuyInBoardAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get buy-in board announcements
       responses:
         '200':
@@ -376,14 +107,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  buyInBoardAnnouncements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Announcement'
+                $ref: "#/components/schemas/GetBuyInBoardAnnouncementsResponse"
   /approvedAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get approved announcements
       responses:
         '200':
@@ -391,14 +119,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  approvedAnnouncements:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ApprovedAnnouncement'
+                $ref: '#/components/schemas/ApprovedAnnouncementResponse'
   /getFinancialAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get financial announcements
       responses:
         '200':
@@ -406,23 +131,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqFinancialAnnouncemnets:
-                    type: array
-                    items:
-                      allOf:
-                        - $ref: '#/components/schemas/AnnouncementFileBase'
-                        - type: object
-                          properties:
-                            name:
-                              type: string
-                            symbol:
-                              type: string
-                            authorizedDate:
-                              type: string
+                $ref: '#/components/schemas/GetFinancialAnnouncementResponse'
   /circularAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get circular announcements
       responses:
         '200':
@@ -430,14 +143,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqCircularAnnouncement:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/AnnouncementFileBase"
+                $ref: '#/components/schemas/CircularAnnouncementResponse'
   /directiveAnnouncement:
     post:
+      tags:
+        - Announcements
       summary: Get directive announcements
       responses:
         '200':
@@ -445,14 +155,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqDirectiveAnnouncement:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/AnnouncementFileBase'
+                $ref: '#/components/schemas/DirectiveAnnouncementResponse'
   /getNonComplianceAnnouncements:
     post:
+      tags:
+        - Announcements
       summary: Get non-compliance announcements
       responses:
         '200':
@@ -460,20 +167,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  nonComplianceAnnouncements:
-                    type: array
-                    items:
-                      allOf:
-                        - $ref: '#/components/schemas/Announcement'
-                        - type: object
-                          properties:
-                            companyName:
-                              nullable: true
-                              type: string
+                $ref: '#/components/schemas/GetNonComplianceAnnouncementsResponse'
   /marketStatus:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get current market status
       responses:
         '200':
@@ -481,12 +179,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
+                $ref: '#/components/schemas/MarketStatusResponse'
   /marketSummery:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get market summary
       responses:
         '200':
@@ -494,19 +191,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  tradeVolume:
-                    type: number
-                    format: double
-                  shareVolume:
-                    type: integer
-                  tradeDate:
-                    type: integer
+                $ref: '#/components/schemas/MarketSummeryResponse'
   /aspiData:
     post:
+      tags:
+        - Indices
       summary: Get ASPI index data
       responses:
         '200':
@@ -517,6 +206,8 @@ paths:
                 $ref: '#/components/schemas/IndexData'
   /snpData:
     post:
+      tags:
+        - Indices
       summary: Get S&P SL20 index data
       responses:
         '200':
@@ -527,43 +218,28 @@ paths:
                 $ref: '#/components/schemas/IndexData'
   /chartData:
     post:
+      tags:
+        - Company Data
       summary: Get chart data for a symbol
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                symbol:
-                  type: string
-                  description: Ticker symbol 
-                  example: ALLI.N0000
-                chartId:
-                  type: integer
-                  description: Chart type identifier (behavior not documented)
-                  example: 1
-                period:
-                  type: integer
-                  description: Time range indicator (behavior not documented)
-                  example: 2
-              required:
-                - symbol
-                - chartId
-                - period
+              $ref: '#/components/schemas/ChartDataRequest'
       responses:
         '200':
           description: Successful response with chart data
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ChartDataPoint'
+                $ref: '#/components/schemas/ChartDataPointArray'
         '400':
           description: Bad request (invalid or missing parameters)
   /allSectors:
     post:
+      tags:
+        - Sectors
       summary: Get all sector data
       responses:
         '200':
@@ -571,11 +247,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SectorData'
+                $ref: '#/components/schemas/SectorDataArray'
   /detailedTrades:
     post:
+      tags:
+        - Detailed Trading Feed
       summary: Get detailed trades
       responses:
         '200':
@@ -583,14 +259,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  reqDetailTrades:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/StockTrade'
+                $ref: '#/components/schemas/DetailedTradesResponse'
   /dailyMarketSummery:
     post:
+      tags:
+        - Market Summary and General Prices
       summary: Get daily market summaries
       responses:
         '200':
@@ -598,13 +271,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/DailyMarketSummaryItem'
+                $ref: '#/components/schemas/DailyMarketSummeryResponse'
   /companyChartDataByStock:
     post:
+      tags:
+        - Company Data
       summary: Get historical chart data for a stock by internal stock ID
       description: >
         Returns time-series chart data for the given stock.  
@@ -614,17 +285,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
-              properties:
-                stockId:
-                  type: integer
-                  description: Internal stock ID (not the ticker / symbol)
-                  example: 340
-                period:
-                  type: integer
-                  description: Time range selector (meaning unknown / undocumented)
-                  example: 2
-              required: [stockId, period]
+              $ref: '#/components/schemas/CompanyChartDataByStockRequest'
             example:
               stockId: 340
               period: 2
@@ -641,246 +302,666 @@ paths:
                   chartData:
                     type: array
                     items:
-                      $ref: '#/components/schemas/CompanyChartDataItem'
+                      $ref: '#/components/schemas/CompanyChartDataByStockResponse'
         '400':
           description: Invalid stockId or period — server returns empty body
 
 
 components:
   schemas:
-    ChartDataPoint:
+    CompanyChartDataByStockRequest:
       type: object
       properties:
-        d:
+        stockId:
           type: integer
-          description: Timestamp (epoch millis)
-        v:
-          type: number
-          format: float
-          description: Value at timestamp (index/price depending on chartId)
-        pc:
-          type: number
-          format: float
-          nullable: true
-          description: Percentage change from previous value
+          description: Internal stock ID (not the ticker / symbol)
+          example: 340
+        period:
+          type: integer
+          description: Time range selector (meaning unknown / undocumented)
+          example: 2
+      required: [stockId, period]
+    ChartDataRequest:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Ticker symbol 
+          example: ALLI.N0000
+        chartId:
+          type: integer
+          description: Chart type identifier (behavior not documented)
+          example: 1
+        period:
+          type: integer
+          description: Time range indicator (behavior not documented)
+          example: 2
       required:
-        - d
-        - v
-    CompanyChartDataItem:
-      type: object
-      properties:
-        h:
-          type: number
-          format: float
-        l:
-          type: number
-          format: float
-        o:
-          type: number
-          format: float
-          nullable: true
-        s:
-          type: number
-        q:
-          type: number
-        p:
-          type: number
-          format: float
-        c:
-          type: number
-          nullable: true
-        pc:
-          type: number
-          nullable: true
-        t:
-          type: integer
-        n:
-          type: number
-          nullable: true
-        id:
-          type: integer
-    DailyMarketSummaryItem:
+        - symbol
+        - chartId
+        - period
+    MarketSummeryResponse:
       type: object
       properties:
         id:
+          type: integer
+        tradeVolume:
+          type: number
+          format: double
+        shareVolume:
           type: integer
         tradeDate:
           type: integer
-        marketTurnover:
-          type: number
-          format: float
-        marketTrades:
-          type: number
-          format: float
-        marketDomestic:
-          type: number
-          format: float
-        marketForeign:
-          type: number
-          format: float
-        equityTurnover:
-          type: number
-          format: float
-        equityDomesticPurchase:
-          type: number
-          format: float
-        equityDomesticSales:
-          type: number
-          format: float
-        equityForeignPurchase:
-          type: number
-          format: float
-        equityForeignSales:
-          type: number
-          format: float
-        volumeOfTurnOverNumber:
-          type: number
-          format: float
-        volumeOfTurnoverDomestic:
-          type: number
-          format: float
-        volumeOfTurnoverForeign:
-          type: number
-          format: float
-        tradesNo:
-          type: number
-          format: float
-        tradesNoDomestic:
-          type: number
-          format: float
-        tradesNoForeign:
-          type: number
-          format: float
-        listedCompanyNumber:
-          type: number
-          format: float
-        tradeCompanyNumber:
-          type: number
-          format: float
-        marketCap:
-          type: number
-          format: float
-        cdsHoldingsTotal:
-          type: number
-          format: float
-        cdsHoldingsDomestic:
-          type: number
-          format: float
-        cdsHoldingsForeign:
-          type: number
-          format: float
-        cdsMarketValueTotal:
-          type: number
-          format: float
-        cdsMarketValueDomestic:
-          type: number
-          format: float
-        cdsMarketValueForeign:
-          type: number
-          format: float
-        corporateDebtValue:
-          type: number
-          format: float
-        governmentDebtValue:
-          type: number
-          format: float
-        triasi:
-          type: number
-          format: float
-        spt:
-          type: number
-          format: float
-        asi:
-          type: number
-          format: float
-        mpi:
-          type: number
+    MarketStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+    GetNonComplianceAnnouncementsResponse:
+      type: object
+      properties:
+        nonComplianceAnnouncements:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Announcement'
+              - type: object
+                properties:
+                  companyName:
+                    nullable: true
+                    type: string
+    DirectiveAnnouncementResponse:
+      type: object
+      properties:
+        reqDirectiveAnnouncement:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnouncementFileBase'
+    CircularAnnouncementResponse:
+      type: object
+      properties:
+        reqCircularAnnouncement:
+          type: array
+          items:
+            $ref: "#/components/schemas/AnnouncementFileBase"
+    GetFinancialAnnouncementResponse:
+      type: object
+      properties:
+        reqFinancialAnnouncemnets:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/AnnouncementFileBase'
+              - type: object
+                properties:
+                  name:
+                    type: string
+                  symbol:
+                    type: string
+                  authorizedDate:
+                    type: string
+    ApprovedAnnouncementResponse:
+      type: object
+      properties:
+        approvedAnnouncements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovedAnnouncement'
+    GetBuyInBoardAnnouncementsResponse:
+      type: object
+      properties:
+        buyInBoardAnnouncements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Announcement'
+    GetNewListingsRelatedNoticesAnnouncementsResponse:
+      type: object
+      properties:
+        newListingRelatedAnnouncements:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewListingAnnouncement'
+    DetailedTradesResponse:
+      type: object
+      properties:
+        reqDetailTrades:
+          $ref: '#/components/schemas/StockTradeArray'
+    MostActiveTradesResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          securityId:
+            type: integer
+          symbol:
+            type: string
+          tradeVolume:
+            type: number
+            format: float
+          shareVolume:
+            type: number
+            format: float
+          turnover:
+            type: number
+            format: float
+          percentageShareVolume:
+            type: number
+            format: float
+    TodaySharePriceResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          symbol:
+            type: string
+          open:
+            type: number
+            format: float
+          high:
+            type: number
+            format: float
+          low:
+            type: number
+            format: float
+          lastTradedPrice:
+            type: number
+            format: float
+          change:
+            type: number
+            format: float
+          changePercentage:
+            type: number
+            format: float
+          crossingVolume:
+            type: integer
+          tradesTime:
+            type: integer
+          quantity:
+            type: integer
+    TradeSummaryResponse:
+      type: object
+      properties:
+        reqTradeSummery:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              symbol:
+                type: string
+              quantity:
+                type: integer
+              percentageChange:
+                type: number
+                format: float
+              change:
+                type: number
+                format: float
+              price:
+                type: number
+                format: float
+              previousClose:
+                type: number
+                format: float
+              high:
+                type: number
+                format: float
+              low:
+                type: number
+                format: float
+              lastTradedTime:
+                type: integer
+              issueDate:
+                type: string
+              turnover:
+                type: number
+                format: float
+              sharevolume:
+                type: integer
+              tradevolume:
+                type: integer
+              marketCap:
+                type: number
+                format: float
+              marketCapPercentage:
+                type: number
+                format: float
+              open:
+                type: number
+                format: float
+              closingPrice:
+                type: number
+                format: float
+              crossingVolume:
+                type: integer
+              crossingTradeVol:
+                type: integer
+              status:
+                type: integer
+    CompanyInfoSummeryRequest:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AEL.N0000
+      required: [symbol]
+    CompanyInfoSummeryResponse:
+      type: object
+      properties:
+        reqSymbolBetaInfo:
+          type: object
+          properties:
+            securityId:
+              type: integer
+            triASIBetaValue:
+              type: number
+              format: float
+            betaValueSPSL:
+              type: number
+              format: float
+            triASIBetaPeriod:
+              type: string
+            quarter:
+              type: integer
+        reqTagsLogo:
           nullable: true
-        spp:
-          type: number
-          format: float
-        trimpi:
-          type: number
-          nullable: true
-        per:
-          type: number
-          format: float
-        pbv:
-          type: number
-          format: float
-        dy:
-          type: number
-          format: float
-    SectorData:
+          type: object
+        reqLogo:
+          type: object
+          properties:
+            id:
+              type: integer
+            path:
+              type: string
+        reqSymbolInfo:
+          type: object
+          properties:
+            id:
+              type: integer
+            symbol:
+              type: string
+            name:
+              type: string
+            issueDate:
+              type: string
+            quantityIssued:
+              type: integer
+            parValue:
+              type: number
+              format: float
+            issuedPrice:
+              nullable: true
+              type: number
+              format: float
+            lastTradedPrice:
+              type: number
+              format: float
+            wtdHiPrice:
+              type: number
+              format: float
+            mtdHiPrice:
+              type: number
+              format: float
+            ytdHiPrice:
+              type: number
+              format: float
+            p12HiPrice:
+              type: number
+              format: float
+            allHiPrice:
+              type: number
+              format: float
+            allLowPrice:
+              type: number
+              format: float
+            wtdLowPrice:
+              type: number
+              format: float
+            mtdLowPrice:
+              type: number
+              format: float
+            ytdLowPrice:
+              type: number
+              format: float
+            p12LowPrice:
+              type: number
+              format: float
+            tdyShareVolume:
+              type: integer
+            wdyShareVolume:
+              type: integer
+            mtdShareVolume:
+              type: integer
+            ytdShareVolume:
+              type: integer
+            p12ShareVolume:
+              type: integer
+            tdyTradeVolume:
+              type: integer
+            wtdTradeVolume:
+              nullable: true
+              type: integer
+            mtdTradeVolume:
+              nullable: true
+              type: integer
+            ytdTradeVolume:
+              nullable: true
+              type: integer
+            p12TradeVolume:
+              nullable: true
+              type: integer
+            tdyTurnover:
+              type: number
+              format: float
+            wtdTurnover:
+              type: number
+              format: float
+            mtdTurnover:
+              type: number
+              format: float
+            ytdTurnover:
+              type: number
+              format: float
+            p12Turnover:
+              nullable: true
+              type: number
+              format: float
+            previousClose:
+              type: number
+              format: float
+            foreignHoldings:
+              nullable: true
+              type: number
+              format: float
+            foreignPercentage:
+              nullable: true
+              type: number
+              format: float
+            instrumentsDate:
+              nullable: true
+              type: string
+            hiTrade:
+              type: number
+              format: float
+            lowTrade:
+              type: number
+              format: float
+            closingPrice:
+              type: number
+              format: float
+            marketCap:
+              type: number
+              format: float
+            marketCapPercentage:
+              type: number
+              format: float
+            change:
+              type: number
+              format: float
+            changePercentage:
+              type: number
+              format: float
+            symbolIndexShareVolume:
+              type: integer
+            isin:
+              type: string
+    ChartDataPointArray:
+      type: array
+      items:
+        type: object
+        properties:
+          d:
+            type: integer
+            description: Timestamp (epoch millis)
+          v:
+            type: number
+            format: float
+            description: Value at timestamp (index/price depending on chartId)
+          pc:
+            type: number
+            format: float
+            nullable: true
+            description: Percentage change from previous value
+        required:
+          - d
+          - v
+    CompanyChartDataByStockResponse:
       type: object
       properties:
         id:
           type: integer
-        sectorId:
-          type: integer
-        symbol:
-          type: string
-        indexCode:
-          type: string
-        indexCodeSp:
-          type: string
-        indexName:
-          type: string
-        name:
-          type: string
-        indexValue:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        percentage:
-          type: number
-          format: double
-        sectorTradeToday:
-          type: number
-          format: double
-        sectorVolumeToday:
-          type: integer
-        sectorTurnoverToday:
-          type: number
-          format: double
-        sectorPreviousClose:
-          type: number
-          format: double
-        transactionTime:
-          type: integer
-    StockTrade:
-      type: object
-      properties:
-        id:
-          type: integer
-        securityId:
-          type: integer
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        symbol:
-          type: string
-        price:
-          type: number
-          format: float
-        change:
-          type: number
-          format: float
-        changePercentage:
-          type: number
-          format: float
-        tradeDate:
-          type: integer
-          nullable: true
-        qty:
-          type: number
-          nullable: true
-        trades:
-          type: number
-          nullable: true
+        chartData:
+          type: array
+          items:
+            type: object
+            properties:
+              h:
+                type: number
+                format: float
+              l:
+                type: number
+                format: float
+              o:
+                type: number
+                format: float
+                nullable: true
+              s:
+                type: number
+              q:
+                type: number
+              p:
+                type: number
+                format: float
+              c:
+                type: number
+                nullable: true
+              pc:
+                type: number
+                nullable: true
+              t:
+                type: integer
+              n:
+                type: number
+                nullable: true
+              id:
+                type: integer
+    DailyMarketSummeryResponse:
+      type: array
+      items:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            tradeDate:
+              type: integer
+            marketTurnover:
+              type: number
+              format: float
+            marketTrades:
+              type: number
+              format: float
+            marketDomestic:
+              type: number
+              format: float
+            marketForeign:
+              type: number
+              format: float
+            equityTurnover:
+              type: number
+              format: float
+            equityDomesticPurchase:
+              type: number
+              format: float
+            equityDomesticSales:
+              type: number
+              format: float
+            equityForeignPurchase:
+              type: number
+              format: float
+            equityForeignSales:
+              type: number
+              format: float
+            volumeOfTurnOverNumber:
+              type: number
+              format: float
+            volumeOfTurnoverDomestic:
+              type: number
+              format: float
+            volumeOfTurnoverForeign:
+              type: number
+              format: float
+            tradesNo:
+              type: number
+              format: float
+            tradesNoDomestic:
+              type: number
+              format: float
+            tradesNoForeign:
+              type: number
+              format: float
+            listedCompanyNumber:
+              type: number
+              format: float
+            tradeCompanyNumber:
+              type: number
+              format: float
+            marketCap:
+              type: number
+              format: float
+            cdsHoldingsTotal:
+              type: number
+              format: float
+            cdsHoldingsDomestic:
+              type: number
+              format: float
+            cdsHoldingsForeign:
+              type: number
+              format: float
+            cdsMarketValueTotal:
+              type: number
+              format: float
+            cdsMarketValueDomestic:
+              type: number
+              format: float
+            cdsMarketValueForeign:
+              type: number
+              format: float
+            corporateDebtValue:
+              type: number
+              format: float
+            governmentDebtValue:
+              type: number
+              format: float
+            triasi:
+              type: number
+              format: float
+            spt:
+              type: number
+              format: float
+            asi:
+              type: number
+              format: float
+            mpi:
+              type: number
+              nullable: true
+            spp:
+              type: number
+              format: float
+            trimpi:
+              type: number
+              nullable: true
+            per:
+              type: number
+              format: float
+            pbv:
+              type: number
+              format: float
+            dy:
+              type: number
+              format: float
+    SectorDataArray:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          sectorId:
+            type: integer
+          symbol:
+            type: string
+          indexCode:
+            type: string
+          indexCodeSp:
+            type: string
+          indexName:
+            type: string
+          name:
+            type: string
+          indexValue:
+            type: number
+            format: double
+          change:
+            type: number
+            format: double
+          percentage:
+            type: number
+            format: double
+          sectorTradeToday:
+            type: number
+            format: double
+          sectorVolumeToday:
+            type: integer
+          sectorTurnoverToday:
+            type: number
+            format: double
+          sectorPreviousClose:
+            type: number
+            format: double
+          transactionTime:
+            type: integer
+    StockTradeArray:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          securityId:
+            type: integer
+            nullable: true
+          name:
+            type: string
+            nullable: true
+          symbol:
+            type: string
+          price:
+            type: number
+            format: float
+          change:
+            type: number
+            format: float
+          changePercentage:
+            type: number
+            format: float
+          tradeDate:
+            type: integer
+            nullable: true
+          qty:
+            type: number
+            nullable: true
+          trades:
+            type: number
+            nullable: true
     IndexData:
       type: object
       properties:
